@@ -16,7 +16,43 @@ namespace Portafolio.Controllers
         //Acciones
         public IActionResult Index()
         {
-            return View();
+            var proyectos = ObtenerProyectos().Take(3).ToList();
+            var modelo = new HomeIndexViewModel() { Proyectos = proyectos };
+            return View(modelo);
+        }
+
+        private List<Proyecto> ObtenerProyectos()
+        {
+            return new List<Proyecto>() { 
+                new Proyecto
+            {
+                Titulo = "Amazon",
+                Descripcion = "Ecommerce con ASP.NET",
+                Link = "https://amazon.com.mx",
+                ImagenURL = "/imagenes/amazon.png"
+            },
+            new Proyecto
+            {
+                Titulo = "New York times",
+                Descripcion = "Página de noticias en React",
+                Link = "https://nytimes.com",
+                ImagenURL = "/imagenes/nyt.png"
+            },
+            new Proyecto
+            {
+                Titulo = "Reddit",
+                Descripcion = "Red social para compartir en comunidades",
+                Link = "https://reddit.com",
+                ImagenURL = "/imagenes/reddit.png"
+            },
+            new Proyecto
+            {
+                Titulo = "Steam",
+                Descripcion = "Tienda el linea para comprar videojuegos",
+                Link = "https://store.steampowered.com",
+                ImagenURL = "/imagenes/reddit.png"
+            }
+            };
         }
 
         public IActionResult Privacy()
